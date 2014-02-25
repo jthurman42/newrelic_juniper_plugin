@@ -1,0 +1,53 @@
+= New Relic Juniper Plugin
+
+The Juniper Plugin enables integrated monitoring of your Juniper Network
+devices inside of New Relic.  Currently the following metrics are recorded:
+
+Per Routing Engine metrics
+* CPU / Memory usage
+* Temperature
+
+Interface metrics
+* Inbound / Outbound bandwitdh
+* Inbound / Outbound packets per second (Unicast, Multicast, Broadcast)
+
+== Requirements
+
+=== Proxy host
+
+You need a host to install the plugin on that is able to poll the desired equipment via SNMP. That
+host also needs Ruby (tested with 1.8.7 and 1.9.3), and support for rubygems.
+
+
+=== Juniper Equipment
+
+A *read-only* SNMP community is required for each device to be monitored. Currently, only
+SNMP version 2c is supported.
+
+
+== Installation and Running
+
+1. Install this gem from RubyGems:
+
+      gem install newrelic_juniper_plugin
+
+2. Create an installation directory (like /opt/newrelic/juniper ).
+3. In the installation directory, execute
+
+      juniper_monitor install -l LICENSE_KEY
+
+   using the license key from your New Relic account.
+4. Edit the +config/newrelic_plugin.yml+ file generated in step 4.  Setup hostname/port/snmp_community for each device you wish to monitor.
+5. Execute
+
+      juniper_monitor run
+
+== Developer Instructions
+
+1. Fork/Clone the repository
+2. Install bundler and run:
+
+      bundle install
+
+3. Run <b><tt>rake -T</tt></b> to see rake options, including tests.
+
